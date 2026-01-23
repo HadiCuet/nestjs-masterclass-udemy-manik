@@ -1,8 +1,8 @@
 ## Get requests:
 
-GET http://localhost:3000/users/1313
+GET http://localhost:3000/users/5432
 ?limit=10
-&offset=20
+&page=1
 
 
 
