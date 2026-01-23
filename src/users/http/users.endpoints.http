@@ -1,0 +1,18 @@
+## Get requests:
+
+GET http://localhost:3000/users/1313
+?limit=10
+&offset=20
+
+
+
+
+## POST Requests
+POST http://localhost:3000/users/
+Content-Type: application/json
+
+{
+    "name": "Hadi",
+    "email": "hadi@sazib.com",
+    "password": "password"
+}
