@@ -1,4 +1,5 @@
 import { Body, Controller, DefaultValuePipe, Get, Param, ParseIntPipe, Post, Query } from '@nestjs/common';
+import { CreateUserDto } from './dtos/create-user.dto';
 
 @Controller('users')
 export class UsersController {
@@ -14,8 +15,8 @@ export class UsersController {
     }
 
     @Post()
-    public createUsers(@Body() requests: any) {
-        console.log(requests);
+    public createUsers(@Body() createUserDto: CreateUserDto) {
+        console.log(createUserDto);
         return "Your create user endpoint returns success";
     }
 }
