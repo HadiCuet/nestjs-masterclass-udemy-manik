@@ -1,0 +1,25 @@
+
+POST http://localhost:3000/posts/
+Content-Type: application/json
+
+{
+    "title": "My First Post",
+    "postType": "post",
+    "slug": "my-first-post",
+    "status": "draft",
+    "content": "This is the content of my first post.",
+    "schema": "{ \"type\": \"object\" }",
+    "featuredImageUrl": "http://example.com/image.jpg",
+    "publishedOn": "2024-06-01T10:00:00Z",
+    "tags": ["introduction", "welcome"],
+    "metaOptions": [
+        {
+            "key": "views",
+            "value": 100
+        },
+        {
+            "key": "likes",
+            "value": 10
+        }
+    ]
+}

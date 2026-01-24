@@ -1,0 +1,9 @@
+
+PATCH http://localhost:3000/posts/
+Content-Type: application/json
+
+{
+    "id": 1233,
+    "postType": "post",
+    "status": "published"
+}
