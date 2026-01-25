@@ -10,6 +10,7 @@ import { TagsModule } from './tags/tags.module';
 import { Tag } from './tags/tags.entity';
 import { Post } from './posts/post.entity';
 import { MetaOptionsModule } from './meta-options/meta-options.module';
+import { MetaOption } from './meta-options/meta-option.entity';
 
 @Module({
   imports: [UsersModule, PostsModule, AuthModule, 
@@ -18,7 +19,7 @@ import { MetaOptionsModule } from './meta-options/meta-options.module';
       inject: [],
       useFactory: () => ({
       type: "postgres",
-      entities: [User, Post, Tag],
+      entities: [User, Post, Tag, MetaOption],
       synchronize: true,
       port: 5432,
       username: "postgres",
