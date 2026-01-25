@@ -1,7 +1,7 @@
-import { IsArray, IsDate, IsEnum, IsISO8601, IsJSON, IsNotEmpty, IsOptional, IsString, IsUrl, Matches, ValidateNested, MinLength } from "class-validator";
+import { IsArray, IsDate, IsEnum, IsISO8601, IsJSON, IsNotEmpty, IsOptional, IsString, IsUrl, Matches, ValidateNested, MinLength, maxLength, MaxLength } from "class-validator";
 import { postType } from "../enums/postType.enum";
 import { postStatus } from "../enums/postStatus.enum";
-import { CreatePostMetaOptionsDto } from "./create-post-meta-options.dto";
+import { CreatePostMetaOptionsDto } from "../../meta-options/dtos/create-post-meta-options.dto";
 import { Type } from "class-transformer";
 import { ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";
 
@@ -13,6 +13,7 @@ export class CreatePostDto {
     @IsString()
     @IsNotEmpty()
     @MinLength(3)
+    @MaxLength(512)
     title: string;
 
 
@@ -34,6 +35,7 @@ export class CreatePostDto {
     @Matches(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, {
         message: 'Slug can only contain lowercase letters, numbers, and hyphens',
     })
+    @MaxLength(256)
     slug: string;
 
 
@@ -72,6 +74,7 @@ export class CreatePostDto {
     })
     @IsUrl()
     @IsOptional()
+    @MaxLength(1024)
     featuredImageUrl?: string;
 
     @ApiPropertyOptional({
