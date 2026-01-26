@@ -5,7 +5,7 @@ Content-Type: application/json
 {
     "title": "My First Post",
     "postType": "post",
-    "slug": "my-first-post",
+    "slug": "my-first-post-2",
     "status": "draft",
     "content": "This is the content of my first post.",
     "schema": "{ \"type\": \"object\" }",

@@ -65,8 +65,10 @@ export class Post {
     })
     publishedOn?: Date;
 
-    @OneToOne(() => MetaOption)
-    @JoinColumn()
+    @OneToOne(() => MetaOption, (metaOption) => metaOption.post, {
+        cascade: true,
+        eager: true,
+    })
     metaOptions?: MetaOption;
 
     // MARK: relational database: many to many
