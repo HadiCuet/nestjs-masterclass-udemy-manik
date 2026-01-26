@@ -1,0 +1,11 @@
+
+POST http://localhost:3000/tags/
+Content-Type: application/json
+
+{
+    "name": "typescript",
+    "slug": "typescript",
+    "description": "All about TypeScript",
+    "schema": null,
+    "featuredImageUrl": "http://example.com/typescript.jpg"
+}

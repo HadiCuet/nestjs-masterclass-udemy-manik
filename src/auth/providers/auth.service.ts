@@ -11,7 +11,7 @@ export class AuthService {
     ) { }
 
     public logIn(username: string, password: string, id: string) {
-        const user = this.usersService.findOneById(id);
+        const user = this.usersService.findOneById(parseInt(id));
         // Logic for user login
         return "Sample token-xyz-123";
     }

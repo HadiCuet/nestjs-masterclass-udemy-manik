@@ -5,14 +5,15 @@ Content-Type: application/json
 {
     "title": "My First Post",
     "postType": "post",
-    "slug": "my-first-post-2",
+    "slug": "my-first-post-4",
     "status": "draft",
     "content": "This is the content of my first post.",
     "schema": "{ \"type\": \"object\" }",
     "featuredImageUrl": "http://example.com/image.jpg",
     "publishedOn": "2024-06-01T10:00:00Z",
-    // "tags": ["introduction", "welcome"],
+    "tags": [1],
     "metaOptions": {
         "metaValue": "{\"sidebarEnabled\": true, \"showAuthorInfo\": false}"
-    }
+    },
+    "authorId": 1
 }

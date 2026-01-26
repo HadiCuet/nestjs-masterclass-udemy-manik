@@ -31,7 +31,7 @@ export class PostsController {
     @ApiResponse({ status: 400, description: 'Bad Request.' })
     @Patch()
     public patchPost(@Body() patchPostDto: PatchPostDto) {
-        return "Patch Post Endpoint";
+        return this.postsService.update(patchPostDto);
     }
 
     @Delete()
