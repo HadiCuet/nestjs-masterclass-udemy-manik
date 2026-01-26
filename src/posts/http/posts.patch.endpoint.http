@@ -3,16 +3,16 @@ PATCH http://localhost:3000/posts/
 Content-Type: application/json
 
 {
-    "id": 7,
+    "id": 9,
     "title": "My First Post",
     "postType": "post",
-    "slug": "my-first-post-4",
+    "slug": "my-first-post-6",
     "status": "draft",
     "content": "This is the content of my first post.",
     "schema": "{ \"type\": \"object\" }",
     "featuredImageUrl": "http://example.com/image.jpg",
     "publishedOn": "2024-06-01T10:00:00Z",
-    "tags": [1, 2],
+    "tags": [1, 3],
     "metaOptions": {
         "metaValue": "{\"sidebarEnabled\": true, \"showAuthorInfo\": false}"
     },

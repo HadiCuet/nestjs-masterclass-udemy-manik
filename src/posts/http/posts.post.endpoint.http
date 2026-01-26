@@ -3,15 +3,15 @@ POST http://localhost:3000/posts/
 Content-Type: application/json
 
 {
-    "title": "My First Post",
+    "title": "Node.js Basics",
     "postType": "post",
-    "slug": "my-first-post-4",
+    "slug": "my-first-post-6",
     "status": "draft",
-    "content": "This is the content of my first post.",
+    "content": "Node.js is a JavaScript runtime built on Chrome's V8 JavaScript engine.",
     "schema": "{ \"type\": \"object\" }",
     "featuredImageUrl": "http://example.com/image.jpg",
     "publishedOn": "2024-06-01T10:00:00Z",
-    "tags": [1],
+    "tags": [1,2],
     "metaOptions": {
         "metaValue": "{\"sidebarEnabled\": true, \"showAuthorInfo\": false}"
     },
