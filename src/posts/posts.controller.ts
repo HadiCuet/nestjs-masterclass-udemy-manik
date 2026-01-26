@@ -22,7 +22,7 @@ export class PostsController {
     @ApiResponse({ status: 400, description: 'Bad Request.' })
     @Post()
     public createPost(@Body() createPostDto: CreatePostDto) {
-        return "Create Post Endpoint";
+        return this.postsService.create(createPostDto);
     }
 
 

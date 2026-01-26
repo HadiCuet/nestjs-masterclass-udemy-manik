@@ -1,4 +1,4 @@
-import { IsArray, IsDate, IsEnum, IsISO8601, IsJSON, IsNotEmpty, IsOptional, IsString, IsUrl, Matches, ValidateNested, MinLength, maxLength, MaxLength } from "class-validator";
+import { IsArray, IsEnum, IsISO8601, IsJSON, IsNotEmpty, IsOptional, IsString, IsUrl, Matches, ValidateNested, MinLength, MaxLength } from "class-validator";
 import { postType } from "../enums/postType.enum";
 import { postStatus } from "../enums/postStatus.enum";
 import { CreatePostMetaOptionsDto } from "../../meta-options/dtos/create-post-meta-options.dto";
@@ -96,21 +96,21 @@ export class CreatePostDto {
     tags?: string[];
 
     @ApiPropertyOptional({
-        description: 'Meta options for the post as an array of key-value pairs',
-        // example: [{ key: 'seoTitle', value: 'My First Post - Learn NestJS' }, { key: 'time', value: 20 }],
-        type: 'array',
+        type: "string",
         required: false,
         items: {
             type: 'object',
             properties: {
-                key: { type: 'string', example: 'seoTitle' },
-                value: { type: 'any', example: 'My First Post - Learn NestJS' }
-            }
-        }
+                metaValue: {
+                    type: 'json',
+                    description: 'Meta option is a json object',
+                    example: '{"sidebarEnabled": true, "showAuthorInfo": false}',
+                },
+            },
+        },
     })
     @IsOptional()
-    @IsArray()
     @ValidateNested({ each: true })
     @Type(() => CreatePostMetaOptionsDto)
-    metaOptions?: CreatePostMetaOptionsDto[];
+    metaOptions?: CreatePostMetaOptionsDto | undefined;
 }

@@ -11,15 +11,8 @@ Content-Type: application/json
     "schema": "{ \"type\": \"object\" }",
     "featuredImageUrl": "http://example.com/image.jpg",
     "publishedOn": "2024-06-01T10:00:00Z",
-    "tags": ["introduction", "welcome"],
-    "metaOptions": [
-        {
-            "key": "views",
-            "value": 100
-        },
-        {
-            "key": "likes",
-            "value": 10
-        }
-    ]
+    // "tags": ["introduction", "welcome"],
+    "metaOptions": {
+        "metaValue": "{\"sidebarEnabled\": true, \"showAuthorInfo\": false}"
+    }
 }
