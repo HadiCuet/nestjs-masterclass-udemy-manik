@@ -1,2 +1,10 @@
+{{
+date = new Date()
+
+exports.startDate = date.toString()
+exports.endDate = date.toString()
+}}
 
 GET http://localhost:3000/posts/
+&page=1
+&limit=1

@@ -19,6 +19,25 @@ Content-Type: application/json
     "isAuth": true
 }
 
+// Create many users
+POST http://localhost:3000/users/create-many
+Content-Type: application/json
+{
+    "users": [
+        {
+            "firstName": "Mark",
+            "lastName": "Doe",
+            "email": "mark@doe.com",
+            "password": "password$123"
+        },
+        {
+            "firstName": "Jane",
+            "lastName": "Smith",
+            "email": "jane@smith.com",
+            "password": "password$123"
+        }
+    ]
+}
 
 
 

@@ -4,6 +4,7 @@ import { GetUserParamsDto } from './dtos/get-user-params.dto';
 import { PatchUserDto } from './dtos/patch-user.dto';
 import { UsersService } from './providers/users.service';
 import { ApiOperation, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { CreateManyUsersDto } from './dtos/create-many-users.dto';
 
 @Controller('users')
 @ApiTags('Users')
@@ -11,32 +12,39 @@ export class UsersController {
 
     constructor(
         private readonly usersService: UsersService
-    ) {}
+    ) { }
 
     @Get('/{:id}')
     @ApiOperation({ summary: 'Retrieve a list of users with optional pagination' })
     @ApiResponse({ status: 200, description: 'List of users retrieved successfully.' })
-    @ApiQuery({ name: 'page',
-            type: 'number',
-            required: false,
-            example: 0, 
-            description: 'Page number for pagination' 
-        })
-        @ApiQuery({ name: 'limit',
-            type: 'number',
-            required: false,
-            example: 20,
-            description: 'Number of items per page for pagination' 
-        })
+    @ApiQuery({
+        name: 'page',
+        type: 'number',
+        required: false,
+        example: 0,
+        description: 'Page number for pagination'
+    })
+    @ApiQuery({
+        name: 'limit',
+        type: 'number',
+        required: false,
+        example: 20,
+        description: 'Number of items per page for pagination'
+    })
     public getUsers(@Param() getUserParamDto: GetUserParamsDto,
-                    @Query('page', new DefaultValuePipe(0), ParseIntPipe) page: number,
-                    @Query('limit', new DefaultValuePipe(20), ParseIntPipe) limit: number) {
+        @Query('page', new DefaultValuePipe(0), ParseIntPipe) page: number,
+        @Query('limit', new DefaultValuePipe(20), ParseIntPipe) limit: number) {
         return this.usersService.findAll(getUserParamDto, page, limit);
     }
 
     @Post()
     public createUsers(@Body() createUserDto: CreateUserDto) {
         return this.usersService.createUser(createUserDto);
+    }
+
+    @Post('create-many')
+    public createManyUsers(@Body() createManyUsersDto: CreateManyUsersDto) {
+        return this.usersService.createMany(createManyUsersDto);
     }
 
     @Patch()

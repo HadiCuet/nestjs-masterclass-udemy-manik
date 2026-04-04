@@ -7,20 +7,23 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.useGlobalPipes(
     new ValidationPipe({
-     whitelist: true,
-     transform: true,
+      whitelist: true,
+      transform: true,
+      transformOptions: {
+        enableImplicitConversion: true,
+      },
     }),
   );
 
   /* Swagger config */
   const config = new DocumentBuilder()
-  .setTitle('NestJS Masterclass API')
-  .setDescription('Use the base API URL as http://localhost:3000/')
-  .setTermsOfService('https://example.com/terms')
-  .setLicense('MIT', 'https://opensource.org/licenses/MIT')
-  .addServer('http://localhost:3000/')
-  .setVersion('1.0')
-  .build();
+    .setTitle('NestJS Masterclass API')
+    .setDescription('Use the base API URL as http://localhost:3000/')
+    .setTermsOfService('https://example.com/terms')
+    .setLicense('MIT', 'https://opensource.org/licenses/MIT')
+    .addServer('http://localhost:3000/')
+    .setVersion('1.0')
+    .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
   /* Swagger config end */

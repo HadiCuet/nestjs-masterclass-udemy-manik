@@ -7,6 +7,7 @@ import { AuthModule } from './auth/auth.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { TagsModule } from './tags/tags.module';
 import { MetaOptionsModule } from './meta-options/meta-options.module';
+import { PaginationModule } from './common/pagination/pagination.module';
 
 @Module({
   imports: [UsersModule, PostsModule, AuthModule, 
@@ -23,7 +24,7 @@ import { MetaOptionsModule } from './meta-options/meta-options.module';
       host: "localhost",
       database: "nestjs-intro"
       }),
-    }), TagsModule, MetaOptionsModule],
+    }), TagsModule, MetaOptionsModule, PaginationModule],
   controllers: [AppController],
   providers: [AppService],
 })
