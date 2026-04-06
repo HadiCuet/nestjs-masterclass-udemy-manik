@@ -9,6 +9,10 @@ import { TagsModule } from './tags/tags.module';
 import { MetaOptionsModule } from './meta-options/meta-options.module';
 import { PaginationModule } from './common/pagination/pagination.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { AccessTokenGuard } from './auth/guards/access-token/access-token.guard';
+import jwtConfig from './auth/config/jwt.config';
+import { JwtModule } from '@nestjs/jwt';
+import { APP_GUARD } from '@nestjs/core';
 
 @Module({
     imports: [
@@ -36,11 +40,19 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
                 `.env`,
             ],
         }),
+        ConfigModule.forFeature(jwtConfig),
+        JwtModule.registerAsync(jwtConfig.asProvider()),
         TagsModule,
         MetaOptionsModule,
         PaginationModule,
     ],
     controllers: [AppController],
-    providers: [AppService],
+    providers: [
+        AppService,
+        {
+            provide: APP_GUARD,
+            useClass: AccessTokenGuard,
+        },
+    ],
 })
 export class AppModule {}

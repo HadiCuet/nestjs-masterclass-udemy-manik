@@ -1,4 +1,14 @@
-import { Body, Controller, DefaultValuePipe, Get, Param, ParseIntPipe, Patch, Post, Query } from '@nestjs/common';
+import {
+    Body,
+    Controller,
+    DefaultValuePipe,
+    Get,
+    Param,
+    ParseIntPipe,
+    Patch,
+    Post,
+    Query,
+} from '@nestjs/common';
 import { CreateUserDto } from './dtos/create-user.dto';
 import { GetUserParamsDto } from './dtos/get-user-params.dto';
 import { PatchUserDto } from './dtos/patch-user.dto';
@@ -9,31 +19,35 @@ import { CreateManyUsersDto } from './dtos/create-many-users.dto';
 @Controller('users')
 @ApiTags('Users')
 export class UsersController {
-
-    constructor(
-        private readonly usersService: UsersService
-    ) { }
+    constructor(private readonly usersService: UsersService) {}
 
     @Get('/{:id}')
-    @ApiOperation({ summary: 'Retrieve a list of users with optional pagination' })
-    @ApiResponse({ status: 200, description: 'List of users retrieved successfully.' })
+    @ApiOperation({
+        summary: 'Retrieve a list of users with optional pagination',
+    })
+    @ApiResponse({
+        status: 200,
+        description: 'List of users retrieved successfully.',
+    })
     @ApiQuery({
         name: 'page',
         type: 'number',
         required: false,
         example: 0,
-        description: 'Page number for pagination'
+        description: 'Page number for pagination',
     })
     @ApiQuery({
         name: 'limit',
         type: 'number',
         required: false,
         example: 20,
-        description: 'Number of items per page for pagination'
+        description: 'Number of items per page for pagination',
     })
-    public getUsers(@Param() getUserParamDto: GetUserParamsDto,
+    public getUsers(
+        @Param() getUserParamDto: GetUserParamsDto,
         @Query('page', new DefaultValuePipe(0), ParseIntPipe) page: number,
-        @Query('limit', new DefaultValuePipe(20), ParseIntPipe) limit: number) {
+        @Query('limit', new DefaultValuePipe(20), ParseIntPipe) limit: number,
+    ) {
         return this.usersService.findAll(getUserParamDto, page, limit);
     }
 
@@ -49,6 +63,6 @@ export class UsersController {
 
     @Patch()
     public patchUser(@Body() patchUserDto: PatchUserDto) {
-        return "Your patch user endpoint returns success";
+        return 'Your patch user endpoint returns success';
     }
 }

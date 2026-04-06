@@ -12,16 +12,16 @@ POST http://localhost:3000/users/
 Content-Type: application/json
 
 {
-    "firstName": "Sazib",
-    "lastName": "Hadi",
-    "email": "hadi@sazib.com",
-    "password": "password$123",
-    "isAuth": true
+    "firstName": "jamal",
+    "lastName": "bhuiyan",
+    "email": "jamal@bhuiyan.com",
+    "password": "password$123"
 }
 
 // Create many users
 POST http://localhost:3000/users/create-many
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjcsImVtYWlsIjoiamFtYWxAYmh1aXlhbi5jb20iLCJpYXQiOjE3NzU0NzE4ODMsImV4cCI6MTc3NTQ3NTQ4MywiYXVkIjoibG9jYWxob3N0OiAzMDAwIiwiaXNzIjoibG9jYWxob3N0OiAzMDAwIn0.DP_odpNYWIGneYvZu_7qKhTDONoi-T6aaTTu6HyvigA
 {
     "users": [
         {
