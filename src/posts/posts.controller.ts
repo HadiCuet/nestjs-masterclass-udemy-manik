@@ -14,6 +14,8 @@ import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { CreatePostDto } from './dtos/create-post.dto';
 import { PatchPostDto } from './dtos/patch-post.dto';
 import { GetPostsDto } from './dtos/get-posts.dto';
+import { ActiveUser } from 'src/auth/decorators/active-user.decorator';
+import type { ActiveUserData } from 'src/auth/interfaces/active-user-data.interface';
 
 @Controller('posts')
 @ApiTags('Posts')
@@ -32,8 +34,11 @@ export class PostsController {
     @ApiResponse({ status: 201, description: 'Post created successfully.' })
     @ApiResponse({ status: 400, description: 'Bad Request.' })
     @Post()
-    public createPost(@Body() createPostDto: CreatePostDto) {
-        return this.postsService.create(createPostDto);
+    public createPost(
+        @Body() createPostDto: CreatePostDto,
+        @ActiveUser() activeUser: ActiveUserData,
+    ) {
+        return this.postsService.create(createPostDto, activeUser);
     }
 
     @ApiOperation({ summary: 'Update an existing post' })

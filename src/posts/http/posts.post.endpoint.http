@@ -1,19 +1,18 @@
 
 POST http://localhost:3000/posts/
 Content-Type: application/json
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjcsImVtYWlsIjoiamFtYWxAYmh1aXlhbi5jb20iLCJpYXQiOjE3NzYyNTM2ODEsImV4cCI6MTc3NjI1NzI4MSwiYXVkIjoibG9jYWxob3N0OiAzMDAwIiwiaXNzIjoibG9jYWxob3N0OiAzMDAwIn0.AyHrnd9DYqQoHXTICvOBye4bVhQyL41RhoBnQt1yjoM
 {
     "title": "Node.js Basics",
     "postType": "post",
-    "slug": "my-first-post-6",
+    "slug": "my-first-post-7",
     "status": "draft",
     "content": "Node.js is a JavaScript runtime built on Chrome's V8 JavaScript engine.",
     "schema": "{ \"type\": \"object\" }",
     "featuredImageUrl": "http://example.com/image.jpg",
-    "publishedOn": "2024-06-01T10:00:00Z",
-    "tags": [1,2],
+    "publishedOn": "2024-06-30T12:00:00Z",
+    "tags": [1],
     "metaOptions": {
         "metaValue": "{\"sidebarEnabled\": true, \"showAuthorInfo\": false}"
-    },
-    "authorId": 1
+    }
 }

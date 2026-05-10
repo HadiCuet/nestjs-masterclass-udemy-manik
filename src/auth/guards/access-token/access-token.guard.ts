@@ -7,7 +7,6 @@ import {
 } from '@nestjs/common';
 import type { ConfigType } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
-import { Observable } from 'rxjs';
 import jwtConfig from 'src/auth/config/jwt.config';
 import { Request } from 'express';
 import { REQUEST_USER_KEY } from 'src/auth/constants/auth.constants';
@@ -36,7 +35,6 @@ export class AccessTokenGuard implements CanActivate {
                 this.jwtConfiguration,
             );
             request[REQUEST_USER_KEY] = payload;
-            console.log('Token payload:', payload);
         } catch (error) {
             console.error('Token verification failed:', error);
             throw new UnauthorizedException('Invalid or expired token');

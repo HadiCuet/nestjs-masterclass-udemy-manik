@@ -18,6 +18,8 @@ import { Tag } from 'src/tags/tags.entity';
 import { GetPostsDto } from '../dtos/get-posts.dto';
 import { PaginationProvider } from 'src/common/pagination/providers/pagination.provider';
 import { Paginated } from 'src/common/pagination/interfaces/paginated.interface';
+import { CreatePostProvider } from './create-post.provider';
+import { ActiveUserData } from 'src/auth/interfaces/active-user-data.interface';
 
 @Injectable()
 export class PostsService {
@@ -33,6 +35,8 @@ export class PostsService {
 
         // Injecting PaginationProvider
         private readonly paginationProvider: PaginationProvider,
+
+        private readonly createPostProvider: CreatePostProvider,
     ) {}
 
     public async findAll(
@@ -48,45 +52,8 @@ export class PostsService {
         );
     }
 
-    public async create(createPostDto: CreatePostDto) {
-        let author: User | null = null;
-        try {
-            author = await this.usersService.findOneById(
-                createPostDto.authorId,
-            );
-        } catch (error) {
-            throw new RequestTimeoutException('Database request timed out', {
-                description:
-                    'The request to fetch the author took too long to complete.',
-            });
-        }
-        if (!author) {
-            throw new NotFoundException(
-                `Author with ID ${createPostDto.authorId} not found`,
-            );
-        }
-        let tags: Tag[] = [];
-        try {
-            tags = await this.tagsService.findMultipleTags(
-                createPostDto.tags || [],
-            );
-        } catch (error) {
-            throw error;
-        }
-
-        let newPost = this.postsRepository.create({
-            ...createPostDto,
-            author: author,
-            tags: tags,
-        });
-        try {
-            return await this.postsRepository.save(newPost);
-        } catch (error) {
-            throw new RequestTimeoutException('Database request timed out', {
-                description:
-                    'The request to create a new post took too long to complete.',
-            });
-        }
+    public async create(createPostDto: CreatePostDto, user: ActiveUserData) {
+        return await this.createPostProvider.create(createPostDto, user);
     }
 
     public async update(patchPostDto: PatchPostDto) {
@@ -124,7 +91,9 @@ export class PostsService {
         post.schema = patchPostDto.schema ?? post.schema;
         post.featuredImageUrl =
             patchPostDto.featuredImageUrl ?? post.featuredImageUrl;
-        post.publishedOn = patchPostDto.publishedOn ?? post.publishedOn;
+        post.publishedOn = patchPostDto.publishedOn
+            ? new Date(patchPostDto.publishedOn)
+            : post.publishedOn;
         post.tags = tags;
 
         try {
